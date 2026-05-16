@@ -3,72 +3,183 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZüriDate | Inserieren in Zürich</title>
+<title>ZüriDate | Geprüfte Inserate Zürich</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-:root{--pink:#ff3f91;--orange:#ffbd59;--green:#86f0ae;--line:rgba(255,255,255,.16)}
+:root{--pink:#ff2f72;--orange:#ffbd59;--green:#86f0ae;--line:rgba(255,255,255,.16);--muted:#eadff0;--bg:#0b0410}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#fff;background:
-linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
-linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px),
-radial-gradient(circle at 20% 0%,rgba(255,63,145,.35),transparent 34%),
-linear-gradient(180deg,#3b0b39,#140516 55%,#08030c);background-size:48px 48px,48px 48px,auto,auto}
-a{text-decoration:none;color:inherit}.top{padding:12px;text-align:center;font-weight:900;background:linear-gradient(90deg,var(--pink),var(--orange));color:#160712}
-nav{position:sticky;top:0;background:rgba(11,4,13,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);z-index:10}
-.nav{max-width:1120px;margin:auto;padding:16px 20px;display:flex;justify-content:space-between;align-items:center}.logo{font-size:28px;font-weight:1000}.logo span{color:var(--orange)}.navlinks{display:flex;gap:10px}
-.btn{display:inline-flex;justify-content:center;align-items:center;padding:15px 22px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid var(--line);font-weight:1000}.primary{background:linear-gradient(135deg,var(--pink),var(--orange));color:#170612;border:0}
-.hero,section{max-width:1120px;margin:auto;padding:70px 18px}.hero{display:grid;grid-template-columns:1fr 1fr;gap:24px}.card,.tile,.price{background:linear-gradient(180deg,rgba(24,11,28,.98),rgba(11,5,14,.98));border:1px solid var(--line);border-radius:34px;box-shadow:0 30px 90px rgba(0,0,0,.45);padding:30px}
-.pill{display:inline-flex;padding:10px 14px;border-radius:999px;background:rgba(134,240,174,.12);border:1px solid rgba(134,240,174,.4);color:var(--green);font-weight:1000;margin-bottom:18px}
-h1{font-size:clamp(52px,10vw,104px);line-height:.82;letter-spacing:-3px;margin:0 0 22px;text-transform:uppercase}h2{font-size:clamp(40px,7vw,78px);line-height:.86;letter-spacing:-2px;margin:0 0 22px;text-transform:uppercase}h3{font-size:25px;margin:0 0 10px}p{color:#eadff0;line-height:1.55;font-size:18px}.lead{font-size:24px;color:#fff}
-.actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}.check{background:rgba(255,255,255,.07);border:1px solid var(--line);border-radius:22px;padding:20px;margin:14px 0;font-size:21px;font-weight:1000}.check b{color:var(--green)}
-.grid,.prices{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.icon{font-size:38px;margin-bottom:12px}.age{display:inline-block;padding:7px 11px;border-radius:999px;background:rgba(255,63,145,.16);border:1px solid rgba(255,63,145,.4);color:#ffd8ea;font-weight:1000;margin-bottom:10px}.featured{border-color:rgba(255,189,89,.8)}.amount{font-size:44px;font-weight:1000;margin:14px 0}ul{color:#eadff0;line-height:1.8;padding-left:18px}
-.notice{margin-top:18px;padding:18px;border-radius:24px;border:1px solid rgba(255,189,89,.36);background:rgba(255,189,89,.12);color:#fff4dc;font-weight:900}
-.formwrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:22px}input,select,textarea{width:100%;margin-bottom:12px;padding:16px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.08);color:#fff;font-size:16px}textarea{min-height:120px}button{width:100%;border:0;padding:16px;border-radius:999px;background:linear-gradient(135deg,var(--pink),var(--orange));font-weight:1000;color:#170612;font-size:17px}
-.paybuttons{display:grid;gap:10px;margin-top:18px}.paybtn{display:flex;justify-content:center;align-items:center;padding:14px 16px;border-radius:999px;font-weight:1000;text-align:center}.pay-card{background:linear-gradient(135deg,var(--pink),var(--orange));color:#170612}.pay-twint{background:rgba(255,255,255,.08);border:1px solid var(--line);color:#fff}.pay-note{font-size:14px;color:#eadff0;margin-top:10px}.honeypot{display:none}
-footer{text-align:center;color:#eadff0;padding:34px 18px;border-top:1px solid var(--line)}
-@media(max-width:850px){.hero,.formwrap{grid-template-columns:1fr}.grid,.prices{grid-template-columns:1fr 1fr}.navlinks{display:none}}@media(max-width:560px){.grid,.prices{grid-template-columns:1fr}.card{padding:26px}}
+radial-gradient(circle at 20% 0%,rgba(255,47,114,.35),transparent 34%),
+linear-gradient(180deg,#2a082b,#120615 50%,#07030a)}
+a{color:inherit;text-decoration:none}
+.top{padding:11px 14px;text-align:center;font-weight:1000;background:linear-gradient(90deg,var(--pink),var(--orange));color:#170612;font-size:14px}
+nav{position:sticky;top:0;z-index:30;background:rgba(9,4,12,.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.nav{max-width:1120px;margin:auto;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.logo{font-size:29px;font-weight:1000;letter-spacing:-1px}.logo span{color:var(--orange)}
+.navlinks{display:flex;gap:9px}
+.btn,button{display:inline-flex;align-items:center;justify-content:center;padding:12px 16px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid var(--line);color:#fff;font-weight:1000;cursor:pointer;font-size:15px}
+.primary,button.primary{background:linear-gradient(135deg,var(--pink),var(--orange));border:0;color:#170612}
+.catbar{position:sticky;top:58px;z-index:25;background:rgba(9,4,12,.94);border-bottom:1px solid var(--line);overflow-x:auto;white-space:nowrap;padding:10px 12px}
+.catwrap{max-width:1120px;margin:auto;display:flex;gap:8px}
+.cat{flex:0 0 auto;padding:10px 13px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.08);font-weight:1000}
+.cat.hot{background:linear-gradient(135deg,var(--pink),var(--orange));color:#170612;border:0}.cat.green{color:#c9ffd9;border-color:rgba(134,240,174,.45);background:rgba(134,240,174,.12)}
+main,section{max-width:1120px;margin:auto;padding:38px 16px}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;align-items:stretch}
+.card,.panel,.listing,.price,.stepbox{background:linear-gradient(180deg,rgba(28,13,31,.98),rgba(12,5,15,.98));border:1px solid var(--line);border-radius:26px;box-shadow:0 22px 70px rgba(0,0,0,.42);padding:22px}
+h1{font-size:clamp(42px,9vw,82px);line-height:.86;letter-spacing:-3px;text-transform:uppercase;margin:0 0 16px}
+h2{font-size:clamp(32px,7vw,58px);line-height:.9;letter-spacing:-2px;text-transform:uppercase;margin:0 0 16px}
+h3{font-size:22px;margin:0 0 8px}
+p{font-size:17px;line-height:1.5;color:var(--muted)}.lead{font-size:21px;color:#fff}
+.pill{display:inline-flex;padding:9px 12px;border-radius:999px;background:rgba(134,240,174,.12);border:1px solid rgba(134,240,174,.45);color:#c9ffd9;font-weight:1000;margin-bottom:12px}
+.count{display:inline-flex;padding:9px 12px;border-radius:999px;background:rgba(255,47,114,.16);border:1px solid rgba(255,47,114,.45);color:#ffd8ea;font-weight:1000;margin-bottom:12px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+.trust div{padding:12px;border-radius:18px;background:rgba(255,255,255,.08);border:1px solid var(--line);text-align:center;font-weight:1000;font-size:14px}
+.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.quick .panel{padding:18px}.quick strong{display:block;color:#fff;font-size:20px;margin-bottom:5px}
+.listTop{display:flex;align-items:end;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.listings{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+.listing{padding:0;overflow:hidden}
+.photo{height:210px;background:linear-gradient(135deg,rgba(255,47,114,.45),rgba(255,189,89,.24));display:flex;align-items:center;justify-content:center;font-size:58px;position:relative;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover}
+.badge,.premium{position:absolute;top:12px;padding:7px 9px;border-radius:999px;font-size:12px;font-weight:1000}
+.badge{left:12px;background:var(--green);color:#07140c}.premium{right:12px;background:linear-gradient(135deg,var(--pink),var(--orange));color:#170612}
+.body{padding:16px}.body p{font-size:15px;margin:7px 0}
+.meta{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}
+.tag{font-size:12px;padding:6px 8px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid var(--line);font-weight:900}.tag.green{background:rgba(134,240,174,.12);border-color:rgba(134,240,174,.45);color:#c9ffd9}
+.empty{padding:18px;border:1px dashed var(--line);border-radius:20px;color:var(--muted);margin-top:14px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.stepbox{padding:18px}.num{display:inline-flex;width:34px;height:34px;border-radius:50%;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--pink),var(--orange));color:#170612;font-weight:1000;margin-bottom:10px}
+.formwrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:18px}
+fieldset{border:1px solid var(--line);border-radius:22px;padding:16px;margin:0 0 14px;background:rgba(255,255,255,.035)}
+legend{padding:0 8px;font-weight:1000;color:#fff}
+input,select,textarea{width:100%;margin-bottom:10px;padding:14px;border-radius:15px;border:1px solid var(--line);background:rgba(255,255,255,.08);color:#fff;font-size:16px}
+option{color:#000}textarea{min-height:115px}label{display:block;margin:6px 0 8px;color:#fff;font-weight:1000}
+button{width:100%;font-size:16px}button:disabled{opacity:.6}
+.status{display:none;margin-top:12px;padding:13px;border-radius:16px;font-weight:900}.ok{display:block;background:rgba(134,240,174,.14);border:1px solid rgba(134,240,174,.45);color:#c9ffd9}.err{display:block;background:rgba(255,70,70,.14);border:1px solid rgba(255,70,70,.45);color:#ffd6d6}
+.prices{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.amount{font-size:38px;font-weight:1000;margin:10px 0}ul{color:var(--muted);line-height:1.7;padding-left:18px}.featured{border-color:rgba(255,189,89,.7)}
+.notice{margin-top:16px;padding:16px;border-radius:20px;border:1px solid rgba(255,189,89,.36);background:rgba(255,189,89,.12);color:#fff4dc;font-weight:900}
+.honeypot{display:none}
+footer{text-align:center;color:var(--muted);padding:30px 16px;border-top:1px solid var(--line)}.footerlinks{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:10px}.footerlinks a{text-decoration:underline}
+@media(max-width:900px){.hero,.formwrap{grid-template-columns:1fr}.trust,.steps,.prices,.listings,.quick{grid-template-columns:1fr 1fr}.navlinks{display:none}}
+@media(max-width:620px){main,section{padding:30px 14px}.trust,.steps,.prices,.listings,.quick{grid-template-columns:1fr}.photo{height:205px}.catbar{top:57px}}
 </style>
 </head>
 <body>
-<div class="top">ZüriDate · Zürich-only · direkt inserieren · 18+</div>
-<nav><div class="nav"><div class="logo">Züri<span>Date</span></div><div class="navlinks"><a class="btn" href="#preise">Preise</a><a class="btn primary" href="#formular">Inserat aufgeben</a></div></div></nav>
+<div class="top">Launch: erste 25 Frauen gratis · Kontakt freischalten CHF 7 · Zürich-only · 18+</div>
+<nav><div class="nav"><div class="logo">Züri<span>Date</span></div><div class="navlinks"><a class="btn" href="#inserate">Suchen</a><a class="btn" href="#preise">Preise</a><a class="btn primary" href="#formular">Inserieren</a></div></div></nav>
+<div class="catbar"><div class="catwrap"><button class="cat hot" onclick="setFilter('all')">🔥 Alle</button><button class="cat green" onclick="setFilter('Frau sucht')">👩 Frau sucht</button><button class="cat" onclick="setFilter('Mann sucht')">👨 Mann sucht</button><button class="cat" onclick="setFilter('Paare')">👥 Paare</button><button class="cat" onclick="setFilter('LGBTQ+')">🌈 LGBTQ+</button><a class="cat" href="#formular">+ Inserat</a></div></div>
 
-<header class="hero">
-<div class="card"><span class="pill">Exklusive Community Zürich</span><h1>Inserieren. Prüfen. Veröffentlichen.</h1><p class="lead">Inserate anschauen ist frei. Wer inserieren oder Kontakt aufnehmen will, bezahlt ein Paket und wird geprüft. Keine Fake-Profile, kein Spam.</p><div class="actions"><a class="btn primary" href="#preise">Paket wählen</a><a class="btn" href="#schutz">Fake-Schutz</a></div></div>
-<div class="card"><h2>So läuft es</h2><div class="check"><b>1.</b> Paket wählen und bezahlen</div><div class="check"><b>2.</b> Inserat einreichen</div><div class="check"><b>3.</b> Manuelle Prüfung</div><div class="check"><b>4.</b> Veröffentlichung nach Freigabe</div></div>
-</header>
+<main class="hero">
+  <div class="card">
+    <span class="count">Nur noch 25 Gratisplätze für Frauen</span><br>
+    <span class="pill">Geprüfte Inserate für Zürich</span>
+    <h1>Einfach suchen. Sicher inserieren.</h1>
+    <p class="lead">ZüriDate ist dein lokaler Inserate-Marktplatz für echte Kontakte in Zürich. Neue Inserate werden geprüft, bevor sie online gehen.</p>
+    <div class="actions"><a class="btn primary" href="#formular">Inserat aufgeben</a><a class="btn" href="#inserate">Jetzt suchen</a></div>
+    <div class="trust"><div>✅ geprüft</div><div>🔞 18+</div><div>📍 Zürich</div><div>🛡️ Anti-Fake</div></div>
+  </div>
+  <div class="card">
+    <h2>Für Besucher</h2>
+    <div class="quick">
+      <div class="panel"><strong>1</strong><p>Rubrik wählen.</p></div>
+      <div class="panel"><strong>2</strong><p>Inserat ansehen.</p></div>
+      <div class="panel"><strong>3</strong><p>Kontakt CHF 7.</p></div>
+    </div>
+    <p class="notice">Kontakt kostet, damit weniger Spam und Fake-Anfragen entstehen.</p>
+  </div>
+</main>
 
-<section id="preise"><h2>Inserat aufgeben</h2><p class="lead">Günstige Einführungspreise. Karte, Debitkarte und Apple Pay über Stripe. TWINT vorbereitet.</p><div class="prices">
-<div class="price"><h3>Starter Inserat</h3><div class="amount">CHF 9</div><ul><li>7 Tage online</li><li>1 Rubrik</li><li>Basis-Sichtbarkeit</li><li>manuelle Prüfung</li></ul><div class="paybuttons"><a class="paybtn pay-card" href="#formular">Karte / Apple Pay</a><a class="paybtn pay-twint" href="#formular">TWINT vorbereiten</a></div><p class="pay-note">Stripe-Link CHF 9 hier später einsetzen.</p></div>
-<div class="price featured"><h3>Top Inserat</h3><div class="amount">CHF 19</div><ul><li>14 Tage online</li><li>hervorgehoben</li><li>mehr Sichtbarkeit</li><li>schnellere Prüfung</li></ul><div class="paybuttons"><a class="paybtn pay-card" href="#formular">Karte / Apple Pay</a><a class="paybtn pay-twint" href="#formular">TWINT vorbereiten</a></div><p class="pay-note">Stripe-Link CHF 19 hier später einsetzen.</p></div>
-<div class="price"><h3>VIP Inserat</h3><div class="amount">CHF 39</div><ul><li>30 Tage online</li><li>Top-Platzierung</li><li>VIP Badge</li><li>priorisierte Prüfung</li></ul><div class="paybuttons"><a class="paybtn pay-card" href="#formular">Karte / Apple Pay</a><a class="paybtn pay-twint" href="#formular">TWINT vorbereiten</a></div><p class="pay-note">Stripe-Link CHF 39 hier später einsetzen.</p></div>
-</div><div class="notice">Wichtig: Kartendaten werden nie auf ZüriDate gespeichert. Zahlung läuft später über Stripe / Payrexx / Worldline.</div></section>
+<section id="inserate">
+  <div class="listTop"><div><h2>Inserate</h2><p class="lead" id="filterLabel">Alle freigegebenen Inserate aus Zürich.</p></div><a class="btn primary" href="#formular">+ Inserieren</a></div>
+  <div id="listings" class="listings"><div class="empty">Inserate werden geladen...</div></div>
+</section>
 
-<section id="formular"><h2>Inserat einreichen</h2><div class="formwrap">
-<div class="card"><h3>Vor Veröffentlichung prüfen wir:</h3><div class="check"><b>✓</b> echte E-Mail und Telefonnummer</div><div class="check"><b>✓</b> Zürich-Bezug / PLZ</div><div class="check"><b>✓</b> keine Scam-Texte</div><div class="check"><b>✓</b> keine gestohlenen oder KI-Fake-Fotos</div></div>
-<div class="card"><form onsubmit="location.href='mailto:hello@zuridate.ch?subject=Neues Inserat ZüriDate&body=Hallo, ich möchte ein Inserat einreichen. Bitte prüfe meine Angaben.';return false;">
-<input class="honeypot" name="website" placeholder="Nicht ausfüllen">
-<input placeholder="Vorname / Anzeigename" required>
-<input type="number" placeholder="Alter 18+" min="18" required>
-<input placeholder="Stadt / PLZ, z.B. Zürich 8004" required>
-<select required><option value="">Rubrik wählen</option><option>Frau sucht Mann</option><option>Mann sucht Frau</option><option>Frau sucht Frau</option><option>Mann sucht Mann</option><option>Paare</option><option>Fetish / Kinks 18+</option><option>Unterwäsche 18+</option><option>Socken 18+</option><option>Bilder 18+</option><option>Videos 18+</option></select>
-<select required><option value="">Paket wählen</option><option>Starter Inserat CHF 9</option><option>Top Inserat CHF 19</option><option>VIP Inserat CHF 39</option></select>
-<input type="email" placeholder="E-Mail für Prüfung" required>
-<input placeholder="Telefonnummer für Verifizierung" required>
-<textarea placeholder="Inserat Text: Wer bist du? Was suchst du? Keine illegalen Inhalte." required></textarea>
-<button>Inserat zur Prüfung senden</button>
-</form></div>
-</div></section>
+<section id="so-gehts">
+  <h2>So funktioniert’s</h2>
+  <div class="steps">
+    <div class="stepbox"><div class="num">1</div><h3>Einreichen</h3><p>Alias, Alter, Rubrik, Text und Bild.</p></div>
+    <div class="stepbox"><div class="num">2</div><h3>Prüfung</h3><p>Du kontrollierst Fake, Spam und Zürich-Bezug.</p></div>
+    <div class="stepbox"><div class="num">3</div><h3>Online</h3><p>Status auf approved setzen.</p></div>
+    <div class="stepbox"><div class="num">4</div><h3>Kontakt</h3><p>Besucher zahlen CHF 7 für Kontakt.</p></div>
+  </div>
+</section>
 
-<section id="schutz"><h2>Anti-Fake System</h2><div class="grid">
-<div class="tile"><div class="icon">💳</div><h3>Zahlung als Filter</h3><p>Bezahlte Inserate reduzieren Bots und Fake-Profile sofort.</p></div>
-<div class="tile"><div class="icon">📱</div><h3>Telefonprüfung</h3><p>Telefonnummer wird für manuelle oder spätere SMS-Prüfung verwendet.</p></div>
-<div class="tile"><div class="icon">🔍</div><h3>Manuelle Freigabe</h3><p>Am Anfang wird nichts automatisch veröffentlicht.</p></div>
-<div class="tile"><div class="icon">🛡️</div><h3>Spam-Check</h3><p>Verdächtige Texte, Links und Masseneinträge werden abgelehnt.</p></div>
-<div class="tile"><div class="icon">🤖</div><h3>Bot-Schutz</h3><p>Honeypot-Feld ist eingebaut. Cloudflare Turnstile kann später ergänzt werden.</p></div>
-<div class="tile"><div class="icon">📍</div><h3>Zürich-Fokus</h3><p>Nur Inserate mit Zürich-Bezug werden akzeptiert.</p></div>
-</div></section>
+<section id="formular">
+  <h2>Inserat aufgeben</h2>
+  <div class="formwrap">
+    <div class="card">
+      <h3>Was passiert danach?</h3>
+      <p>Dein Inserat wird gespeichert, aber nicht sofort veröffentlicht. ZüriDate prüft es zuerst.</p>
+      <div class="notice">Erste 25 Frauen: CHF 0. Danach Standard CHF 9.</div>
+    </div>
+    <div class="card">
+      <form id="listingForm">
+        <input class="honeypot" name="website" autocomplete="off">
+        <fieldset><legend>1. Basis</legend>
+          <input id="title" placeholder="Titel, z.B. Laura sucht ehrliche Kontakte" required>
+          <input id="age" type="number" placeholder="Alter 18+" min="18" required>
+          <input id="city" placeholder="Stadt / PLZ, z.B. Zürich 8004" required>
+        </fieldset>
+        <fieldset><legend>2. Rubrik</legend>
+          <select id="category" required><option value="">Haupt-Rubrik wählen</option><option>Frau sucht</option><option>Mann sucht</option><option>Paare</option><option>LGBTQ+</option></select>
+          <select id="subcategory" required><option value="">Unter-Rubrik wählen</option><option>Frau sucht Mann</option><option>Mann sucht Frau</option><option>Frau sucht Frau</option><option>Mann sucht Mann</option><option>Paar sucht Frau</option><option>Paar sucht Mann</option><option>Freundschaft</option><option>Dating</option><option>Begleitung</option></select>
+        </fieldset>
+        <fieldset><legend>3. Paket</legend>
+          <select id="package" required><option value="">Paket wählen</option><option>Frauen Launch Inserat CHF 0</option><option>Standard Inserat CHF 9</option><option>Highlight Inserat CHF 19</option><option>Video Inserat CHF 29</option><option>Kontakt freischalten CHF 7</option></select>
+        </fieldset>
+        <fieldset><legend>4. Kontakt & Inhalt</legend>
+          <input id="email" type="email" placeholder="E-Mail für Prüfung" required>
+          <input id="phone" placeholder="Telefonnummer / WhatsApp für Verifizierung" required>
+          <textarea id="description" placeholder="Beschreibe ehrlich, wer du bist und was du suchst." required></textarea>
+          <label>Bild hochladen</label><input id="image" type="file" accept="image/*">
+        </fieldset>
+        <button id="submitBtn" type="submit">Inserat zur Prüfung senden</button>
+        <div id="formStatus" class="status"></div>
+      </form>
+    </div>
+  </div>
+</section>
 
-<footer>© 2026 ZüriDate · zuridate.ch · Exklusive Dating Community Zürich · 18+</footer>
+<section id="preise">
+  <h2>Preise</h2>
+  <div class="prices">
+    <div class="price featured"><h3>Frauen Launch</h3><div class="amount">CHF 0</div><ul><li>erste 25 Frauen</li><li>7 Tage online</li><li>manuelle Prüfung</li></ul></div>
+    <div class="price"><h3>Standard</h3><div class="amount">CHF 9</div><ul><li>7 Tage online</li><li>1 Rubrik</li></ul></div>
+    <div class="price featured"><h3>Kontakt</h3><div class="amount">CHF 7</div><ul><li>Kontakt freischalten</li><li>Spam-Schutz</li></ul></div>
+    <div class="price"><h3>Highlight</h3><div class="amount">CHF 19</div><ul><li>mehr Sichtbarkeit</li><li>14 Tage</li></ul></div>
+    <div class="price"><h3>Video</h3><div class="amount">CHF 29</div><ul><li>Premium-Funktion</li><li>nach Prüfung</li></ul></div>
+    <div class="price"><h3>Werbung</h3><div class="amount">ab CHF 49</div><ul><li>Bannerplätze</li><li>lokale Anbieter</li></ul></div>
+  </div>
+</section>
+
+<section id="werbung">
+  <h2>Werbung</h2>
+  <div class="prices">
+    <div class="price"><h3>Sidebar</h3><div class="amount">CHF 49</div><p>1 Woche Werbeplatz.</p></div>
+    <div class="price featured"><h3>Homepage</h3><div class="amount">CHF 99</div><p>1 Woche prominent.</p></div>
+    <div class="price"><h3>Partner</h3><div class="amount">CHF 199</div><p>1 Monat Logo + Link.</p></div>
+  </div>
+</section>
+
+<section id="admin">
+  <h2>Admin</h2>
+  <div class="card"><h3>Freigabe</h3><p>Supabase → Table Editor → listings. Neue Einträge haben <b>status = pending</b>. Für Veröffentlichung auf <b>approved</b> ändern.</p></div>
+</section>
+
+<footer>© 2026 ZüriDate · zuridate.ch · 18+<div class="footerlinks"><a href="#impressum">Impressum</a><a href="#datenschutz">Datenschutz</a><a href="#agb">AGB</a></div></footer>
+
+<script>
+const SUPABASE_URL="https://cddtxbfoemcioowwrlkf.supabase.co";
+const SUPABASE_KEY="sb_publishable_qmtxSpfyGe1MqHEO42Kd0w_cv8X0bzF";
+const client=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+let currentFilter="all";
+function esc(s){return String(s||"").replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));}
+function setFilter(f){currentFilter=f;document.getElementById("filterLabel").textContent=f==="all"?"Alle freigegebenen Inserate aus Zürich.":"Freigegebene Inserate: "+f;loadListings();document.getElementById("inserate").scrollIntoView({behavior:"smooth"});}
+async function loadListings(){const wrap=document.getElementById("listings");wrap.innerHTML='<div class="empty">Inserate werden geladen...</div>';let q=client.from("listings").select("*").eq("status","approved").order("created_at",{ascending:false}).limit(6);if(currentFilter!=="all")q=q.eq("category",currentFilter);const {data,error}=await q;if(error){wrap.innerHTML='<div class="empty">Inserate konnten nicht geladen werden. Prüfe Supabase Policies.</div>';return}if(!data||data.length===0){wrap.innerHTML='<div class="empty">Noch keine freigegebenen Inserate. Reiche jetzt das erste Inserat ein.</div>';return}wrap.innerHTML=data.map(x=>{const img=x.image_urls&&x.image_urls.length?'<img src="'+esc(x.image_urls[0])+'">':'👤';return `<article class="listing"><div class="photo">${img}<span class="badge">${x.is_verified?'geprüft':'neu'}</span>${x.is_featured?'<span class="premium">Premium</span>':''}</div><div class="body"><h3>${esc(x.title)}</h3><p>${esc(x.description).slice(0,120)}${x.description&&x.description.length>120?'...':''}</p><div class="meta"><span class="tag green">${esc(x.category)}</span><span class="tag">${esc(x.city)}</span><span class="tag">${esc(x.age)} Jahre</span></div><a class="btn primary" href="#preise">Kontakt CHF 7</a></div></article>`}).join("")}
+async function uploadImage(file){if(!file)return[];const ext=file.name.split(".").pop().toLowerCase();const name=Date.now()+"-"+Math.random().toString(36).slice(2)+"."+ext;const {error}=await client.storage.from("listing-images").upload(name,file,{cacheControl:"3600",upsert:false});if(error)throw error;const {data}=client.storage.from("listing-images").getPublicUrl(name);return[data.publicUrl]}
+document.getElementById("listingForm").addEventListener("submit",async e=>{e.preventDefault();const st=document.getElementById("formStatus"),btn=document.getElementById("submitBtn");st.className="status";if(e.target.website.value)return;const age=Number(document.getElementById("age").value);if(age<18){st.className="status err";st.textContent="Du musst mindestens 18 Jahre alt sein.";return}btn.disabled=true;btn.textContent="Wird gesendet...";try{const imgs=await uploadImage(document.getElementById("image").files[0]);const pack=document.getElementById("package").value;const payload={status:"pending",title:document.getElementById("title").value.trim(),age,city:document.getElementById("city").value.trim(),category:document.getElementById("category").value,subcategory:document.getElementById("subcategory").value,description:document.getElementById("description").value.trim(),email:document.getElementById("email").value.trim(),phone:document.getElementById("phone").value.trim(),whatsapp:document.getElementById("phone").value.trim(),image_urls:imgs,payment_status:pack.includes("CHF 0")?"free_launch":"unpaid",is_featured:pack.includes("Highlight")||pack.includes("Video"),is_verified:false};const {error}=await client.from("listings").insert(payload);if(error)throw error;e.target.reset();st.className="status ok";st.textContent="Inserat wurde eingereicht. Es wird geprüft und danach freigeschaltet."}catch(err){st.className="status err";st.textContent="Fehler: "+(err.message||"Bitte später nochmals versuchen.")}finally{btn.disabled=false;btn.textContent="Inserat zur Prüfung senden"}});
+loadListings();
+</script>
 </body>
 </html>
