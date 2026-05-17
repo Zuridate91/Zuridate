@@ -76,7 +76,7 @@ footer{text-align:center;color:var(--muted);padding:30px 16px;border-top:1px sol
     <span class="pill">Geprüfte Inserate für Zürich</span>
     <h1>Einfach suchen. Sicher inserieren.</h1>
     <p class="lead">ZüriDate ist dein lokaler Inserate-Marktplatz für echte Kontakte in Zürich. Neue Inserate werden geprüft, bevor sie online gehen.</p>
-    <a class="btn primary" href="https://buy.stripe.com/6oUeVfeuI6G726Hefv6wE00" target="_blank">Kontakt CHF 7</a>
+    <<a class="btn primary" href="https://buy.stripe.com/6oUeVfeuI6G726Hefv6wE00" target="_blank">Kontakt anzeigen – CHF 4.90</a>
     <div class="trust"><div>✅ geprüft</div><div>🔞 18+</div><div>📍 Zürich</div><div>🛡️ Anti-Fake</div></div>
   </div>
   <div class="card">
@@ -84,7 +84,7 @@ footer{text-align:center;color:var(--muted);padding:30px 16px;border-top:1px sol
     <div class="quick">
       <div class="panel"><strong>1</strong><p>Rubrik wählen.</p></div>
       <div class="panel"><strong>2</strong><p>Inserat ansehen.</p></div>
-      <div class="panel"><strong>3</strong><p>Kontakt CHF 7.</p></div>
+      <p>Kontakt anzeigen CHF 4.90.</p>
     </div>
     <p class="notice">Kontakt kostet, damit weniger Spam und Fake-Anfragen entstehen.</p>
   </div>
@@ -101,7 +101,7 @@ footer{text-align:center;color:var(--muted);padding:30px 16px;border-top:1px sol
     <div class="stepbox"><div class="num">1</div><h3>Einreichen</h3><p>Alias, Alter, Rubrik, Text und Bild.</p></div>
     <div class="stepbox"><div class="num">2</div><h3>Prüfung</h3><p>Du kontrollierst Fake, Spam und Zürich-Bezug.</p></div>
     <div class="stepbox"><div class="num">3</div><h3>Online</h3><p>Status auf approved setzen.</p></div>
-    <div class="stepbox"><div class="num">4</div><h3>Kontakt</h3><p>Besucher zahlen CHF 7 für Kontakt.</p></div>
+    <p>Besucher zahlen CHF 4.90 für Kontakt.</p>
   </div>
 </section>
 
@@ -129,10 +129,10 @@ footer{text-align:center;color:var(--muted);padding:30px 16px;border-top:1px sol
           <select id="package" required><option value="">Paket wählen</option><option>Frauen Launch Inserat CHF 0</option><option>Standard Inserat CHF 9</option><option>Highlight Inserat CHF 19</option><option>Video Inserat CHF 29</option><option>Kontakt freischalten CHF 7</option></select>
         </fieldset>
         <fieldset><legend>4. Kontakt & Inhalt</legend>
-          <input id="email" type="email" placeholder="E-Mail für Prüfung" required>
+          <input id="email" type="email" placeholder="E-Mail für Prüfung" required>ok
           <input id="phone" placeholder="Telefonnummer / WhatsApp für Verifizierung" required>
-          <textarea id="description" placeholder="Beschreibe ehrlich, wer du bist und was du suchst." required></textarea>
-          <label>Bild hochladen</label><input id="image" type="file" accept="image/*">
+          <textarea id="description" minlength="50" placeholder="Mindestens 50 Zeichen: Beschreibe ehrlich, wer du bist und was du suchst." required></textarea>
+          <input id="image" type="file" accept="image/*" required>
         </fieldset>
         <button id="submitBtn" type="submit">Inserat zur Prüfung senden</button>
         <div id="formStatus" class="status"></div>
@@ -146,7 +146,7 @@ footer{text-align:center;color:var(--muted);padding:30px 16px;border-top:1px sol
   <div class="prices">
     <div class="price featured"><h3>Frauen Launch</h3><div class="amount">CHF 0</div><ul><li>erste 25 Frauen</li><li>7 Tage online</li><li>manuelle Prüfung</li></ul></div>
     <div class="price"><h3>Standard</h3><div class="amount">CHF 9</div><ul><li>7 Tage online</li><li>1 Rubrik</li></ul></div>
-    <div class="price featured"><h3>Kontakt</h3><div class="amount">CHF 7</div><ul><li>Kontakt freischalten</li><li>Spam-Schutz</li></ul></div>
+    <div class="price featured"><h3>Kontakt</h3><div class="amount">CHF 4.90</div><ul><li>Kontakt freischalten</li><li>Spam-Schutz</li></ul></div>
     <div class="price"><h3>Highlight</h3><div class="amount">CHF 19</div><ul><li>mehr Sichtbarkeit</li><li>14 Tage</li></ul></div>
     <div class="price"><h3>Video</h3><div class="amount">CHF 29</div><ul><li>Premium-Funktion</li><li>nach Prüfung</li></ul></div>
     <div class="price"><h3>Werbung</h3><div class="amount">ab CHF 49</div><ul><li>Bannerplätze</li><li>lokale Anbieter</li></ul></div>
