@@ -126,13 +126,13 @@ footer{text-align:center;color:var(--muted);padding:30px 16px;border-top:1px sol
           <select id="subcategory" required><option value="">Unter-Rubrik wählen</option><option>Frau sucht Mann</option><option>Mann sucht Frau</option><option>Frau sucht Frau</option><option>Mann sucht Mann</option><option>Paar sucht Frau</option><option>Paar sucht Mann</option><option>Freundschaft</option><option>Dating</option><option>Begleitung</option></select>
         </fieldset>
         <fieldset><legend>3. Paket</legend>
-          <select id="package" required><option value="">Paket wählen</option><option>Frauen Launch Inserat CHF 0</option><option>Standard Inserat CHF 9</option><option>Highlight Inserat CHF 19</option><option>Video Inserat CHF 29</option><option>Kontakt freischalten CHF 7</option></select>
+          <select id="package" required><option value="">Paket wählen</option><option value="starter">Starter – CHF 19</option><option value="premium">Premium – CHF 49</option><option value="vip">VIP – CHF 99</option></select>
         </fieldset>
         <fieldset><legend>4. Kontakt & Inhalt</legend>
           <input id="email" type="email" placeholder="E-Mail für Prüfung" required>
           <input id="phone" placeholder="Telefonnummer / WhatsApp für Verifizierung" required>
           <textarea id="description" placeholder="Beschreibe ehrlich, wer du bist und was du suchst." required></textarea>
-          <label>Bild hochladen</label><input id="image" type="file" accept="image/*">
+          <label>Bild hochladen</label><input id="image" type="file" accept="image/*" required>
         </fieldset>
         <button id="submitBtn" type="submit">Inserat zur Prüfung senden</button>
         <div id="formStatus" class="status"></div>
