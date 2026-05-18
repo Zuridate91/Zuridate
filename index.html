@@ -66,26 +66,25 @@ footer{text-align:center;color:var(--muted);padding:30px 16px;border-top:1px sol
 </style>
 </head>
 <body>
-<div class="top">Erste 25 Frauen gratis · geprüfte Kontakte · Zürich only · diskret</div>
+<div class="top">Launch: erste 25 Frauen gratis · Kontakt freischalten CHF 7 · Zürich-only · 18+</div>
 <nav><div class="nav"><div class="logo">Züri<span>Date</span></div><div class="navlinks"><a class="btn" href="#inserate">Suchen</a><a class="btn" href="#preise">Preise</a><a class="btn primary" href="#formular">Inserieren</a></div></div></nav>
 <div class="catbar"><div class="catwrap"><button class="cat hot" onclick="setFilter('all')">🔥 Alle</button><button class="cat green" onclick="setFilter('Frau sucht')">👩 Frau sucht</button><button class="cat" onclick="setFilter('Mann sucht')">👨 Mann sucht</button><button class="cat" onclick="setFilter('Paare')">👥 Paare</button><button class="cat" onclick="setFilter('LGBTQ+')">🌈 LGBTQ+</button><a class="cat" href="#formular">+ Inserat</a></div></div>
 
 <main class="hero">
-  <span class="count">Launch-Angebot: erste 25 Frauen gratis</span>
-<span class="pill">Diskrete geprüfte Kontakte in Zürich</span>
-<h1>Echte Kontakte. Lokal. Geprüft.</h1>
-<p class="lead">ZüriDate ist für Menschen in Zürich, die seriöse Kontakte suchen. Neue Inserate werden geprüft, bevor sie sichtbar sind.</p>
-<div class="actions">
-  <a class="btn primary" href="#inserate">Kontakte entdecken</a>
-  <a class="btn" href="#formular">Gratis inserieren</a>
-
-  
+  <div class="card">
+    <span class="count">Nur noch 25 Gratisplätze für Frauen</span><br>
+    <span class="pill">Geprüfte Inserate für Zürich</span>
+    <h1>Einfach suchen. Sicher inserieren.</h1>
+    <p class="lead">ZüriDate ist dein lokaler Inserate-Marktplatz für echte Kontakte in Zürich. Neue Inserate werden geprüft, bevor sie online gehen.</p>
+    <a class="btn primary" href="https://buy.stripe.com/6oUeVfeuI6G726Hefv6wE00" target="_blank">Kontakt CHF 7</a>
+    <div class="trust"><div>✅ geprüft</div><div>🔞 18+</div><div>📍 Zürich</div><div>🛡️ Anti-Fake</div></div>
+  </div>
   <div class="card">
     <h2>Für Besucher</h2>
     <div class="quick">
       <div class="panel"><strong>1</strong><p>Rubrik wählen.</p></div>
       <div class="panel"><strong>2</strong><p>Inserat ansehen.</p></div>
-      <a class="btn primary">Kontakt anzeigen – CHF 4.90</a>
+      <div class="panel"><strong>3</strong><p>Kontakt CHF 7.</p></div>
     </div>
     <p class="notice">Kontakt kostet, damit weniger Spam und Fake-Anfragen entstehen.</p>
   </div>
@@ -102,7 +101,7 @@ footer{text-align:center;color:var(--muted);padding:30px 16px;border-top:1px sol
     <div class="stepbox"><div class="num">1</div><h3>Einreichen</h3><p>Alias, Alter, Rubrik, Text und Bild.</p></div>
     <div class="stepbox"><div class="num">2</div><h3>Prüfung</h3><p>Du kontrollierst Fake, Spam und Zürich-Bezug.</p></div>
     <div class="stepbox"><div class="num">3</div><h3>Online</h3><p>Status auf approved setzen.</p></div>
-    <p>Besucher zahlen CHF 4.90 für Kontakt.</p>
+    <div class="stepbox"><div class="num">4</div><h3>Kontakt</h3><p>Besucher zahlen CHF 7 für Kontakt.</p></div>
   </div>
 </section>
 
@@ -124,35 +123,30 @@ footer{text-align:center;color:var(--muted);padding:30px 16px;border-top:1px sol
         </fieldset>
         <fieldset><legend>2. Rubrik</legend>
           <select id="category" required><option value="">Haupt-Rubrik wählen</option><option>Frau sucht</option><option>Mann sucht</option><option>Paare</option><option>LGBTQ+</option></select>
-          <select id="subcategory" required>
-  <option>Frau sucht Mann</option>
-  <option>Mann sucht Frau</option>
-  <option>Frau sucht Frau</option>
-  <option>Mann sucht Mann</option>
-  <option>Paar sucht Frau</option>
-  <option>Paar sucht Mann</option>
-  <option>Freundschaft</option>
-  <option>Dating</option>
-  <option>Begleitung</option>
-  <option>Unterwäsche</option>
-  <option>Private Fotos</option>
-  <option>Private Videos</option>
-</select>
-        
-
-        
-          <input id="email" type="email" placeholder="E-Mail für Prüfung" required>ok
-          <input id="phone" placeholder="Telefonnummer / WhatsApp für Verifizierung" required><section id="preise">
-  
-  <button id="submitBtn" class="primary" type="submit">Inserat absenden</button>
-<div id="formStatus" class="status"></div>
-</form>    
+          <select id="subcategory" required><option value="">Unter-Rubrik wählen</option><option>Frau sucht Mann</option><option>Mann sucht Frau</option><option>Frau sucht Frau</option><option>Mann sucht Mann</option><option>Paar sucht Frau</option><option>Paar sucht Mann</option><option>Freundschaft</option><option>Dating</option><option>Begleitung</option></select>
+        </fieldset>
+        <fieldset><legend>3. Paket</legend>
+          <select id="package" required><option value="">Paket wählen</option><option>Frauen Launch Inserat CHF 0</option><option>Standard Inserat CHF 9</option><option>Highlight Inserat CHF 19</option><option>Video Inserat CHF 29</option><option>Kontakt freischalten CHF 7</option></select>
+        </fieldset>
+        <fieldset><legend>4. Kontakt & Inhalt</legend>
+          <input id="email" type="email" placeholder="E-Mail für Prüfung" required>
+          <input id="phone" placeholder="Telefonnummer / WhatsApp für Verifizierung" required>
+          <textarea id="description" placeholder="Beschreibe ehrlich, wer du bist und was du suchst." required></textarea>
+          <label>Bild hochladen</label><input id="image" type="file" accept="image/*">
+        </fieldset>
+        <button id="submitBtn" type="submit">Inserat zur Prüfung senden</button>
+        <div id="formStatus" class="status"></div>
+      </form>
+    </div>
+  </div>
 </section>
+
+<section id="preise">
   <h2>Preise</h2>
   <div class="prices">
     <div class="price featured"><h3>Frauen Launch</h3><div class="amount">CHF 0</div><ul><li>erste 25 Frauen</li><li>7 Tage online</li><li>manuelle Prüfung</li></ul></div>
     <div class="price"><h3>Standard</h3><div class="amount">CHF 9</div><ul><li>7 Tage online</li><li>1 Rubrik</li></ul></div>
-    <div class="price featured"><h3>Kontakt</h3><div class="amount">CHF 4.90</div><ul><li>Kontakt freischalten</li><li>Spam-Schutz</li></ul></div>
+    <div class="price featured"><h3>Kontakt</h3><div class="amount">CHF 7</div><ul><li>Kontakt freischalten</li><li>Spam-Schutz</li></ul></div>
     <div class="price"><h3>Highlight</h3><div class="amount">CHF 19</div><ul><li>mehr Sichtbarkeit</li><li>14 Tage</li></ul></div>
     <div class="price"><h3>Video</h3><div class="amount">CHF 29</div><ul><li>Premium-Funktion</li><li>nach Prüfung</li></ul></div>
     <div class="price"><h3>Werbung</h3><div class="amount">ab CHF 49</div><ul><li>Bannerplätze</li><li>lokale Anbieter</li></ul></div>
@@ -182,19 +176,8 @@ const client=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 let currentFilter="all";
 function esc(s){return String(s||"").replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));}
 function setFilter(f){currentFilter=f;document.getElementById("filterLabel").textContent=f==="all"?"Alle freigegebenen Inserate aus Zürich.":"Freigegebene Inserate: "+f;loadListings();document.getElementById("inserate").scrollIntoView({behavior:"smooth"});}
-async function loadListings(){const wrap=document.getElementById("listings");wrap.innerHTML='<div class="empty">Inserate werden geladen...</div>';let q=client.from("listings").select("*").eq.eq("approved", true).order("created_at",{ascending:false}).limit(6);if(currentFilter!=="all")q=q.eq("category",currentFilter);const {data,error}=await q;if(error){wrap.innerHTML='<div class="empty">Inserate konnten nicht geladen werden. Prüfe Supabase Policies.</div>';return}if(!data||data.length===0){wrap.innerHTML='<div class="empty">Noch keine freigegebenen Inserate. Reiche jetzt das erste Inserat ein.</div>';return}wrap.innerHTML=data.map(x=>{const img=x.image_urls&&x.image_urls.length?'<img src="'+esc(x.image_urls[0])+'">':'👤';return `<article class="listing"><div class="photo">${img}<span class="badge">${x.is_verified?'geprüft':'neu'}</span>${x.is_featured?'<span class="premium">Premium</span>':''}</div><div class="body"><h3>${esc(x.title)}</h3><p>${esc(x.description).slice(0,120)}${x.description&&x.description.length>120?'...':''}</p><div class="meta"><span class="tag green">${esc(x.category)}</span><span class="tag">${esc(x.city)}</span><span class="tag">${esc(x.age)} Jahre</span></div><a class="btn primary" href="#preise">Kontakt CHF 7</a></div></article>`}).join("")}
+async function loadListings(){const wrap=document.getElementById("listings");wrap.innerHTML='<div class="empty">Inserate werden geladen...</div>';let q=client.from("listings").select("*").eq("status","approved").order("created_at",{ascending:false}).limit(6);if(currentFilter!=="all")q=q.eq("category",currentFilter);const {data,error}=await q;if(error){wrap.innerHTML='<div class="empty">Inserate konnten nicht geladen werden. Prüfe Supabase Policies.</div>';return}if(!data||data.length===0){wrap.innerHTML='<div class="empty">Noch keine freigegebenen Inserate. Reiche jetzt das erste Inserat ein.</div>';return}wrap.innerHTML=data.map(x=>{const img=x.image_urls&&x.image_urls.length?'<img src="'+esc(x.image_urls[0])+'">':'👤';return `<article class="listing"><div class="photo">${img}<span class="badge">${x.is_verified?'geprüft':'neu'}</span>${x.is_featured?'<span class="premium">Premium</span>':''}</div><div class="body"><h3>${esc(x.title)}</h3><p>${esc(x.description).slice(0,120)}${x.description&&x.description.length>120?'...':''}</p><div class="meta"><span class="tag green">${esc(x.category)}</span><span class="tag">${esc(x.city)}</span><span class="tag">${esc(x.age)} Jahre</span></div><a class="btn primary" href="#preise">Kontakt CHF 7</a></div></article>`}).join("")}
 async function uploadImage(file){if(!file)return[];const ext=file.name.split(".").pop().toLowerCase();const name=Date.now()+"-"+Math.random().toString(36).slice(2)+"."+ext;const {error}=await client.storage.from("listing-images").upload(name,file,{cacheControl:"3600",upsert:false});if(error)throw error;const {data}=client.storage.from("listing-images").getPublicUrl(name);return[data.publicUrl]}
 document.getElementById("listingForm").addEventListener("submit",async e=>{e.preventDefault();const st=document.getElementById("formStatus"),btn=document.getElementById("submitBtn");st.className="status";if(e.target.website.value)return;const age=Number(document.getElementById("age").value);if(age<18){st.className="status err";st.textContent="Du musst mindestens 18 Jahre alt sein.";return}btn.disabled=true;btn.textContent="Wird gesendet...";try{const imgs=await uploadImage(document.getElementById("image").files[0]);const pack=document.getElementById("package").value;const payload={status:"pending",title:document.getElementById("title").value.trim(),age,city:document.getElementById("city").value.trim(),category:document.getElementById("category").value,subcategory:document.getElementById("subcategory").value,description:document.getElementById("description").value.trim(),email:document.getElementById("email").value.trim(),phone:document.getElementById("phone").value.trim(),whatsapp:document.getElementById("phone").value.trim(),image_urls:imgs,payment_status:pack.includes("CHF 0")?"free_launch":"unpaid",is_featured:pack.includes("Highlight")||pack.includes("Video"),is_verified:false};const {error}=await client.from("listings").insert(payload);if(error)throw error;e.target.reset();st.className="status ok";st.textContent="Inserat wurde eingereicht. Es wird geprüft und danach freigeschaltet."}catch(err){st.className="status err";st.textContent="Fehler: "+(err.message||"Bitte später nochmals versuchen.")}finally{btn.disabled=false;btn.textContent="Inserat zur Prüfung senden"}});
 loadListings();
  </script>
-
-</body>
-
-</html>
-
-
-
-
-</scr
-</bod
-</
